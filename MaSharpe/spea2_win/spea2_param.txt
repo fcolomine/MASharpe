@@ -1,0 +1,2 @@
+seed 142
+tournament 2
