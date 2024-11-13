@@ -1,9 +1,9 @@
 # MASharpe
 A Multiobjective Memetic Algorithm for the Markowitz Model based on Informed Decisions
 
-========================================================================
+========================================
 PISA  (https://sop.tik.ee.ethz.ch/pisa/)
-========================================================================
+========================================
 PISA - A Platform and Programming Language Independent Interface for Search Algorithms.
 
 Permission to use, copy, modify, and distribute this software and its documentation for any purpose, 
@@ -22,7 +22,8 @@ FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON AN "AS I
 FEDERAL INSTITUTE OF TECHNOLOGY, COMPUTER ENGINEERING AND NETWORKS LABORATORY HAS NO OBLIGATION TO PROVIDE 
 MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS. 
 
-========================================================================
+===============================
+
 MASHARPE - Investment portfolio optimization Markowitz model using Sharpe as a knowledge base
 
 Variator Implementation with PISALib
@@ -32,7 +33,7 @@ Documentation
 file: masharpe_documentation.txt
 author: Feijoo Colomine D, Carlos Cotta, Antonio Fernandez
 last change: 
-========================================================================
+============================
 
 The Problem
 ===========
@@ -210,16 +211,27 @@ constraint for recombination)
 Parameters inherent to the use of hybrid capabilities:
 
 K: Best Sharpe Individuals Vector Size
+
 random: (seed for random number generator)
+
 corridas: number of executions of the masharpe algorithm
+
 P_ls: probability of action of local search (P_Ls)
+
 numero_generacion_inicio: initial generation for local search to operate
+
 numero_generacion_final: final generation for local search to operate
+
 P_em: Elite memory usage probability using Sharpe (P_em)
+
 numero_max_itera:  maximum number of reviews for local search
+
 numero_de_corridas_max: maximum number of evaluations of the algorithm
+
 corrector_pob_inicial: use the initial population checker (0: Do not use, 1 Use) 
+
 individual_search: local search probability if the initial population checker is activated (corrector_pob_inicial=1)
+
 diversidad: Elite population size (diversidad<50)
 
 'masharpe_param.txt' is a PISA_parameter file.
