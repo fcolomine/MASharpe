@@ -266,6 +266,7 @@ Usage
 =====
 
 Call MASHARPE with the following arguments:
+You can run the defined batch file runhybrid.bat in windows environment (64 bit)
 
 masharpe paramfile filenamebase poll
 
