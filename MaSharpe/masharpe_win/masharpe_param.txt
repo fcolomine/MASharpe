@@ -1,5 +1,5 @@
 problem COLOMBIA20.TXT
-seed 18723
+seed 10642
 number_decision_variables 20
 maxgen 2
 outputfile zdt1_output1.txt
@@ -13,13 +13,13 @@ eta_recombination 0
 use_symmetric_recombination 1
 K 10
 random 0.007
-corridas 5
+numberOfRuns 2
 P_ls 1
-numero_generacion_inicio 17
-numero_generacion_final 25
+start_generation_number 17
+final_generation_number 20
 P_em 1
-numero_max_itera 500
-numero_de_corridas_max 20000
-corrector_pob_inicial 0
+max_num_iter_l_s 500
+number_of_evaluations_max 20000
+initial_population_checker 0
 individual_search 0.5
-diversidad 30
+diversity 30

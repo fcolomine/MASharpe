@@ -528,35 +528,35 @@ int read_local_parameters()
      assert(randcard >= 0);
      
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "corridas") == 0);
+     assert(strcmp(str, "numberOfRuns") == 0);
      fscanf(fp, "%d", &corridas);
      
      fscanf(fp, "%s", str);
      assert(strcmp(str, "P_ls") == 0);
      fscanf(fp, "%le", &hill);
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "numero_generacion_inicio") == 0);
+     assert(strcmp(str, "start_generation_number") == 0);
      fscanf(fp, "%d", &iteracion);
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "numero_generacion_final") == 0);
+     assert(strcmp(str, "final_generation_number") == 0);
      fscanf(fp, "%d", &iteracion2);
      fscanf(fp, "%s", str);
      assert(strcmp(str, "P_em") == 0);
      fscanf(fp, "%le", &hill1);
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "numero_max_itera") == 0);
+     assert(strcmp(str, "max_num_iter_l_s") == 0);
      fscanf(fp, "%d", &iteracion1);
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "numero_de_corridas_max") == 0);
+     assert(strcmp(str, "number_of_evaluations_max") == 0);
      fscanf(fp, "%d", &nrocorridasmax);
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "corrector_pob_inicial") == 0);
+     assert(strcmp(str, "initial_population_checker") == 0);
      fscanf(fp, "%le", &hill2);
      fscanf(fp, "%s", str);
      assert(strcmp(str, "individual_search") == 0);
      fscanf(fp, "%le", &hill3);
      fscanf(fp, "%s", str);
-     assert(strcmp(str, "diversidad") == 0);
+     assert(strcmp(str, "diversity") == 0);
      fscanf(fp, "%d", &diversidad);
      printf("%s","Termino de leer");
      srand(seed); /* seeding random number generator */
