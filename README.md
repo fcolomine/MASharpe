@@ -214,25 +214,25 @@ K: Best Sharpe Individuals Vector Size
 
 random: (seed for random number generator)
 
-corridas: number of executions of the masharpe algorithm
+numberOfRuns: number of executions of the masharpe algorithm
 
 P_ls: probability of action of local search (P_Ls)
 
-numero_generacion_inicio: initial generation for local search to operate
+start_generation_number: initial generation for local search or elite memory to work
 
-numero_generacion_final: final generation for local search to operate
+final_generation_number: final generation for local search or elite memory to work
 
 P_em: Elite memory usage probability using Sharpe (P_em)
 
-numero_max_itera:  maximum number of reviews for local search
+max_num_iter_l_s:  maximum number of reviews for local search
 
-numero_de_corridas_max: maximum number of evaluations of the algorithm
+number_of_evaluations_max: maximum number of evaluations of the algorithm
 
-corrector_pob_inicial: use the initial population checker (0: Do not use, 1 Use) 
+initial_population_checker: use the initial population checker (0: Do not use; maximum value 1 and works according to a random function) 
 
 individual_search: local search probability if the initial population checker is activated (corrector_pob_inicial=1)
 
-diversidad: Elite population size (diversidad<50)
+diversity: Elite population size (diversity<50)
 
 'masharpe_param.txt' is a PISA_parameter file.
 
