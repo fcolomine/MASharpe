@@ -230,7 +230,7 @@ number_of_evaluations_max: maximum number of evaluations of the algorithm
 
 initial_population_checker: use the initial population checker (0: Do not use; maximum value 1 and works according to a random function) 
 
-individual_search: local search probability if the initial population checker is activated (corrector_pob_inicial=1)
+individual_search: local search probability if the initial population checker is activated (corrector_pob_inicial>0)
 
 diversity: Elite population size (diversity<50)
 
