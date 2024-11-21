@@ -215,19 +215,7 @@ int state0()
           }; 
      gen = 1;
      printf("%s","PASO POR EL ESTADO 0");
-     /**********| addition for DTLZ end |*******/
-
-     /*result = write_ini(initial_population);
-     if (result != 0)
-     { 
-          log_to_file(log_file, __FILE__, __LINE__,
-                      "couldn't write ini");
-          free(initial_population);
-          return (1);
-     }
-
-     free(initial_population);*/
-     //getch();
+  
      wait(0.1);
      return (0);
 }
@@ -592,7 +580,9 @@ int variate(int *selected, int *result_ids)
         left as is */
      if((((double)mu/2) - (int)(mu/2)) != 0) k = mu - 1; 
      else k = mu;
-// IMPRIME GENERACION.............. 
+     
+// PRINT GENERATION.............. 
+
 int j;
 double g=0; 
 FILE *fp_out;
@@ -625,7 +615,8 @@ for(i=0;i<mu;i++){
  fclose(fp_out);
  
 
-     /* do recombination */
+/* do recombination */
+     
      for(i = 0; i < k; i+= 2)
      {  
           if (drand(1) <= individual_recombination_probability)
@@ -652,7 +643,7 @@ for(i=0;i<mu;i++){
           }
      }
      
-     /* do mutation */
+/* do mutation */
      for(i = 0; i < mu; i++)
      {
           if (drand(1) <= individual_mutation_probability)
@@ -673,7 +664,7 @@ for(i=0;i<mu;i++){
      
 
 
-  /* do evaluation */
+/* do evaluation */
      for(i = 0; i < mu; i++)
      {
           int result;
@@ -687,7 +678,8 @@ for(i=0;i<mu;i++){
 
 
 
-/* Performs variation1.*/ 
+/*Make variate1 using hybridization .*/ 
+
 int variate1(int *selected, int *result_ids)
 {
      int result, i, k, n, k1, r;
@@ -787,7 +779,7 @@ for(i = 0; i < mu; i++)
           //printf("Rf: %1.5f",p->rf);
           if(objetivo==1) g1=1-(tmp->f[0]);
           else g1=1000-(tmp->f[0]);
-          //printf("funcion Objetivo 1: %1.5f",g1);
+          //printf("Objective 1 function: %1.5f",g1);
           if(tmp->f[1]>0) rsharpe=(g1-p->rf)/sqrt(tmp->f[1]);
           //printf("rsharpe: %1.5f",rsharpe);
           //getch();
@@ -799,17 +791,15 @@ for(i = 0; i < mu; i++)
               
           }; 
      };
- //printf("  LLEGUE NUMSHARPE %d",numsharpe); 
+ 
    
-/*ordena mejores de mayor a menor       
-     
-    
- */
+/*ordena mejores de mayor a menor  */
+
   j=ordenarmejores();
 
 tprom=0;
 tprom=promediarmejores();
-printf("----PromedioTotalV1:-- %1.5f",tprom);
+printf("----PromTotalV1:-- %1.5f",tprom);
 //getch();
 diversidaddinamica=0;
 for(i=0;i<diversidad;i++){
@@ -819,6 +809,7 @@ for(i=0;i<diversidad;i++){
 
 
  /* do recombination */
+ 
      for(i = 0; i < mu; i+= 2)
      {  
           if (drand(1) <= individual_recombination_probability)
@@ -921,7 +912,7 @@ for(j=0;j<p->numfondos;j++){
                  };
                  reind=mejores[k][0];
                  retemp=mejores[k][0];
-                 printf("%s","CAMBIADO POR ESTAR POR DEBAJO DEL PROMEDIO");
+                 printf("%s","CHANGED FOR BEING BELOW AVERAGE");
                  //getch();
 
 l=diversidad;
@@ -932,25 +923,26 @@ k=0;
 tprom=0;
 tprom=promediarmejores();
 diversidaddinamica=0;
+
 for(i=0;i<diversidad;i++){
    if(mejores[i][0]>tprom) diversidaddinamica++;
    
    };
+   
 i=0;               
 //printf("----diversidad dinamicaV1:-- %1i",diversidaddinamica);
+
 if(gen==0&&drand(1)<=hill2){
-probind=hill3;
-printf("----CORRECTOR DE POBLACION INICIAL");
-//getch();
+	probind=hill3;
+	printf("----INITIAL POPULATION CORRECTOR");
+	//getch();
 }else{
-probind=hill1;	
-//printf("probind: %1.5f",probind);
-//printf("probind: %1i",l);
+	probind=hill1;	
+
 }
 if((drand(1)<=probind&&reind>tprom)||(l>0&&((gen>iteracion2*0.9)&&(gen<iteracion2)))){  
      j=irand(p->numfondos-1);
      k=0;
-     //maxmutr1=mutation1(temp1,j);
      maxmutr1=drand(0.09);
     while(i<iteracion1){           
           r1 = temp1->x[j];
@@ -964,15 +956,15 @@ if((drand(1)<=probind&&reind>tprom)||(l>0&&((gen>iteracion2*0.9)&&(gen<iteracion
 	              //printf("----Objetivo:-- %1.5f",temp1->f[0]);
 	              //getch();
 	              //&&retemp>tprom &&reind>tprom
-                  if(objetivo==1) g=1-(temp1->f[0]);
-                   else g=1000-(temp1->f[0]);
-                   if(temp1->f[1]>0) retemp=(g-p->rf)/sqrt(temp1->f[1]);
-                   if(retemp>reind){
+                  	if(objetivo==1) g=1-(temp1->f[0]);
+				  	else g=1000-(temp1->f[0]);
+                   	if(temp1->f[1]>0) retemp=(g-p->rf)/sqrt(temp1->f[1]);
+                   	if(retemp>reind){
                       for(n1=0;n1<p->numfondos;n1++){               
                       ind->x[n1]=temp1->x[n1];};
                       reind=retemp;
                       maxmutr1+=drand(0.009);
-                      printf("%s","----CAMBIADO POR HILL----");
+                      printf("%s","----CHANGED BY LOCAL SEARCH----");
                        insertarmejores(temp1,retemp);
                        tprom=0;
                       tprom=promediarmejores();
@@ -981,29 +973,24 @@ if((drand(1)<=probind&&reind>tprom)||(l>0&&((gen>iteracion2*0.9)&&(gen<iteracion
                       //getch();
                      }else{
                       if(reind>0){
-                      if(((reind-retemp)/reind)>0.02){
-                                 //printf("%s","NO.......CAMBIADO POR HILL");
-                                 //maxmutr1=mutation1(temp1,j);
+                      		if(((reind-retemp)/reind)>0.02){
                                  maxmutr1=drand(0.9);
                                  i=i+iteracion1*0.3;
                                  //getch();
-                      }else{
-                          //maxmutr1=drand(p->maxfondo-(maxmutr1+(0.09)));
-                          //maxmutr1=mutation1(temp1,j);
-                          maxmutr1=drand(0.09);
-                          i=i+iteracion1*0.1;
-                          //printf("PASO AQUI");
-                          };
-                      i=i+iteracion1*0.1; 
-                      if(i>=iteracion1) k=1;
-                      for(n1=0;n1<p->numfondos;n1++){               
-                      temp1->x[n1]=ind->x[n1];};
-                      retemp=reind;
-                      //printf("----ReindNOCAMBIADOTotal:-- %1.5f",retemp);
-                      };
-                 };//endif
+                      		}else{
+                          		maxmutr1=drand(0.09);
+                          		i=i+iteracion1*0.1;
+                          		
+                          	};
+                      	i=i+iteracion1*0.1; 
+                      	if(i>=iteracion1) k=1;
+                      		for(n1=0;n1<p->numfondos;n1++){               
+                      		temp1->x[n1]=ind->x[n1];};
+                      		retemp=reind;
+                      
+                      		};
+                 		};//endif
           }else{
-                  //printf("QUEDO AQUI");
                   i=i+iteracion1*0.1;
                   j=irand(p->numfondos);
            };//endif
@@ -1364,15 +1351,15 @@ void Leerfondos(ProblemInfo *p,char problema[FILE_NAME_LENGTH]){
 }
 
 
-/* Determines the objective value based on DTLZ */
+/* Determines the objective value */
+
 double eval(individual *ind)
 {
 if(nrocorridasBLV==0){
    nrocorridas=nrocorridas+1.0;
 }else{
       nrocorridas=nrocorridas+(2.0 / ((double)p->numfondos+1.0));
-      //printf("----Corrida:-- %f ---%d----%d",nrocorridas,nrocorridasBLV,nrocorridasBL);
-      //getch();
+      
       };
    if (strcmp(p->problem, "VARIABLE") == 0)
     {
@@ -1405,10 +1392,6 @@ void AnalizaRestricciones (double* pesos, ProblemInfo* p2)
        for (i=0; i<p2->numfondos; i++)
            indice[i] = i+2;
 
-/*       for (i=0; i<p->numfondos; i++)
-           printf ("%f[%d] ", pesos[indice[i]], indice[i]);
-       printf ("\n"); 
-*/
        for (i = 0; i<p2->numfondos; i++) 
             for (j = i+1; j<p2->numfondos; j++) 
                if (pesos[indice[j]]>pesos[indice[i]]) {
@@ -1416,10 +1399,7 @@ void AnalizaRestricciones (double* pesos, ProblemInfo* p2)
                   indice[i] = indice[j];
                   indice[j] = tmp;
                }
-/*       for (i=0; i<p->numfondos; i++)
-           printf ("%f[%d] ", pesos[indice[i]], indice[i]);
-       printf ("\n"); 
-*/ 
+
  
            
        for (i=0; i<p2->cardinalidad; i++) {
@@ -1429,11 +1409,6 @@ void AnalizaRestricciones (double* pesos, ProblemInfo* p2)
        }
        for (i=p2->cardinalidad; i<p2->numfondos; i++)
            pesos[indice[i]] = 0;
-/*       printf ("Prenormalizado:");
-       for (i=0; i<p->numfondos; i++)
-           printf ("%f[%d] ", pesos[indice[i]], indice[i]);
-       printf ("\n"); */
-  //if ((p2->cardinalidad*p2->minfondo<1)&&(p2->cardinalidad*p2->minfondo>0)){
      value = (1.0-p2->cardinalidad*p2->minfondo)/total;
        for (i=0; i<p2->cardinalidad; i++){
            pesos[indice[i]] = p2->minfondo + pesos[indice[i]]*value;
@@ -1447,7 +1422,7 @@ void AnalizaRestricciones (double* pesos, ProblemInfo* p2)
 }
 
 /*
- * Evalua un individuo.
+ * Evaluate an individual.
  *
  */
  
@@ -1469,7 +1444,7 @@ double Evaluar (individual *ind, void* info){
         total+= fenotipo[j+2];
           };
         
-  //printf("Cardinalidad: %lf",p1->cardinalidad);
+  
 if (p1->cardinalidad>0){
    
        AnalizaRestricciones (fenotipo, p1);
@@ -1578,8 +1553,6 @@ if (objetivo==1){
   
     return(ft);
 }
-/*-----------------------HASTA AQUI!!!------------------------------*/
-
 
 
 /* create a random new individual and allocate memory for it,
@@ -1633,6 +1606,7 @@ individual *new_individual()
 
 
 /* copy an individual and return the pointer to it */
+
 individual *copy_individual(individual *ind)
 {
      individual *return_ind;
@@ -1683,6 +1657,7 @@ int log_to_corrida(char *file)
     
      return (0);
 }
+
 //Vector mejores Sharpe---------------------------
 int ordenarmejores()
 {
@@ -1717,8 +1692,7 @@ double promediarmejores()
        int i;
        double tprom1=0.0;
   for(i=0;i<diversidad;i++){
-   //printf("----MEJORES SharpePromedio1:-- %1.10f",mejores[i][0]); 
-   tprom1+=mejores[i][0];
+    tprom1+=mejores[i][0];
    
    };
   //getch();
@@ -1741,7 +1715,7 @@ int insertarmejores(individual *ind, double sharpe){
                   if(mejores[j][0]==0&&k1==0){ 
                    mejores[j][0]=sharpe;
                    //mejores[j][30]=g1;
-                  printf("%s","LO METIO EN LOS CEROS");
+                  printf("%s","I PUT IT IN THE ZEROS");
                    //printf("J***: %1i",j);
                    for(nfondo=1;nfondo<p->numfondos+1;nfondo++){
                       mejores[j][nfondo]=ind->x[nfondo-1];
@@ -1764,10 +1738,7 @@ int insertarmejores(individual *ind, double sharpe){
                       mejores[diversidad-1][nfondo]=ind->x[nfondo-1];
                    };
                    ordenarmejores();
-                     /*for(ver=0;ver<diversidad;ver++){
-                    printf("----MEJORES SharpeDespues:-- %1.10f",mejores[ver][0]); };
-                    getch();*/
-                      break;
+                     break;
                   };
                };
  return(k);
@@ -1776,6 +1747,7 @@ int insertarmejores(individual *ind, double sharpe){
            
 /* Writes the index, objective values and bit string of
    all individuals in global_population to 'out_filename'. */
+   
 void write_output_file()
 {
      int j, current_id;
@@ -1828,9 +1800,9 @@ void write_output_file()
    /*}*/
 	  current_id = get_next(current_id);
      }
-     printf("%s","llego para copiar archivo");
+     printf("%s","I arrive to copy file");
      updateVariatorSeed();
-     printf("%s","Termino la semilla");
+     printf("%s","I finish the seed");
      fclose(fp_out);
      
      log_to_corrida(nro_corridas);
@@ -1890,4 +1862,4 @@ printf("%s",paramfile);
 
 
 
-/**********| addition for DTLZ end |*******/
+
